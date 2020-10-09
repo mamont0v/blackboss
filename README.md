@@ -8,13 +8,11 @@ In the project have next features:
 
 ### `Uses technologies`
 
-Front-end: <br />
+//Front-end: <br />
 1) ReactJS<br />
-State Managment:<br />
+
+//State Managment:<br />
 Redux <br />
-
-
-![Screenshot](Untitled Diagram.png)
 
 
 
