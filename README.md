@@ -2,11 +2,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Shop
 
-In the project directory, you can run:
+In the project have next features:
+1) Add/Remove item to Shopping cart.
+2) Make a order.
 
-### `Market Place`
+### `Uses technologies`
 
-Runs the app in the development mode.<br />
+Front-end: <br />
+1) ReactJS<br />
+State Managment:<br />
+Redux <br />
 
 
 
