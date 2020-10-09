@@ -1,0 +1,18 @@
+.preview-collections {
+    display: flex;
+    flex-direction: column;
+   
+    .title {
+        font-size: 30px;
+        
+    }
+
+    .preview {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        
+
+    }
+}

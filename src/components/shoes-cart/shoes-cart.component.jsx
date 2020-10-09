@@ -1,5 +1,5 @@
 import React from 'react'
-import './shoes-cart.style.scss'
+import './shoes-cart.styles.scss'
 
 const ShoesCart = () => {
     return (
@@ -7,7 +7,7 @@ const ShoesCart = () => {
             <div className="container">
                 <div className="card">
                     <div className="imgBx">
-                        <img src={require('../../images/ClipartKey_1747370.png')} alt="adidas-1" />
+                        <img src={require('../../../../images/ClipartKey_1747370.png')} alt="adidas-1" />
                     </div>
                     <div className="contentBx">
                         <h2>Adidas Shoes</h2>

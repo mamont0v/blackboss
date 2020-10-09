@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import ShoesCart from './components/shoes-cart/shoes-cart.component';
+import { Route, Switch } from "react-router";
+import HomePage from './pages/homepage/homepage.component';
+import ShopPage from './pages/shop/shop.component'
 
 class App extends React.Component {
   constructor() {
@@ -10,12 +12,27 @@ class App extends React.Component {
       shop: [
         {
           id: 1,
-          name: 'addidas',
+          title: 'addidas',
           img: null
         },
         {
           id: 2,
-          name: 'nike',
+          title: 'nike',
+          img: null
+        },
+        {
+          id: 3,
+          title: 'nike',
+          img: null
+        },
+        {
+          id: 4,
+          title: 'nike',
+          img: null
+        },
+        {
+          id: 5,
+          title: 'nike',
           img: null
         }
       ]
@@ -24,7 +41,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <ShoesCart />
+        <Switch>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/shop' component={ShopPage} />
+        </Switch>
       </div>
     );
   }

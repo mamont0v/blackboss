@@ -1,0 +1,96 @@
+.container {
+    position: relative;
+
+    .card {
+        position: relative;
+        width: 320px;
+        height: 450px;
+        background: #333333;
+        border-radius: 30px;
+        overflow: hidden;
+
+        &:before {
+            /* закрасим блок весь цветом */
+            content: "";
+            position: absolute;
+            /* круг типо закрепим к верху но и без этого работает */
+            top: 0;
+            left: 0;
+            /* не нужно может быть это */
+            width: 100%;
+            height: 100%;
+            background: red;
+            /* делаем круг */
+            clip-path: circle(150px at 80% 20%);
+            /* скорость анимации */
+            transition: 0.5s ease-in-out;
+            /* закрасим блок весь цветом */
+        }
+
+        &:hover:before {
+            /* увеличиваем круг  */
+            clip-path: circle(300px at 80% -20%);
+        }
+
+        &:after {
+            content: "Adidas";
+            position: absolute;
+            top: 30%;
+            left: -20%;
+            font-size: 12em;
+            /*добавляем размер шрифта и появляется надпись  */
+            font-weight: 800;
+            /*жир текста*/
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.15)
+        }
+
+        .imgBx {
+            position: absolute;
+            /* картника абсолют */
+            top: 50%;
+            /* движется внутри блока */
+            transform: translateY(-50%);
+            z-index: 10000;
+            width: 100%;
+            /* сделаем так чтобы наш блоки был полностью 100% в ширину для того чтобы когда наводим мышкой в любом месте то кроссовок начинал двигаться */
+            height: 220px;
+            transition: 0.5s;
+        }
+
+        &:hover .imgBx {
+            top: 0%;
+            transform: translateY(0%);
+        }
+
+
+        & .imgBx img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 220px;
+            transform: translate(-50%, -50%) rotate(10deg);
+        }
+
+        & .contentBx {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            z-index: 9999;
+            transition: 1s;
+            text-align: center;
+        }
+        
+        &:hover .contentBx {
+            height: 210px;
+        }
+
+        & .contentBx h2 {
+            position: relative;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+    }
+}
