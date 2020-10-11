@@ -22,7 +22,7 @@ class Directory extends React.Component {
                     id: 3,
                     title: 'на ноги',
                     imageUrl: 'https://images.unsplash.com/photo-1512374382149-233c42b6a83b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80'
-                    
+
                 },
                 {
                     id: 4,
@@ -41,10 +41,10 @@ class Directory extends React.Component {
     }
     render() {
         return (
-            <div className='directory-menu'>
-                {this.state.sections.map(section => (
-                    <MenuItem {...section}/>
-    ))}
+            <div className='directory-menu' >
+                {this.state.sections.map(({ id, ...otherProps }) => (
+                    <MenuItem key={id} {...otherProps} />
+                ))}
             </div>
 
         )
