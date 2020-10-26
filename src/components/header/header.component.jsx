@@ -4,10 +4,18 @@ import { ReactComponent as Logo } from '../../../src/assets/iconfinderstoreshops
 import { Link } from 'react-router-dom';
 import { auth } from '../../firebase/firebase.utils';
 
+import {createStructuredSelector} from 'reselect'
+
+
+import { connect } from 'react-redux';
+import ShopingBag from '../shoping-cart/shoping.component';
+import DropDownMenu from '../dropdown-menu/dropdown-menu.component';
+import { selectCurrentUser } from '../../redux/user/user.selector';
+import { selectBagHidden } from '../../redux/dropdown-cart-bag/bag.selector';
 
 
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, hidden }) => {
     return (
         <div className='header'>
 
@@ -30,9 +38,17 @@ const Header = ({ currentUser }) => {
                         :
                         <Link className='option' to='/sign-up'>ВОЙТИ</Link>
                 }
-            </div>
+                <ShopingBag />
+            </div> { hidden ? null : <DropDownMenu />}
         </div>
     )
 }
 
-export default Header;
+
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    hidden: selectBagHidden
+})
+
+
+export default connect(mapStateToProps)(Header);
