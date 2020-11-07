@@ -22,3 +22,7 @@ export const selectBagItemsCount = createSelector(
     ));
 
 
+export const selectBagTotal = createSelector(
+    [selectBagItems],
+    bagItems => bagItems.reduce((accum, bagItem) => accum + bagItem.quantity * bagItem.price, 0
+    ));

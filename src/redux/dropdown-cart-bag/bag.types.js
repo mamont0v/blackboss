@@ -1,4 +1,6 @@
 export const BagActionTypes = {
     TOGGLE_BAG_MENU: 'TOGGLE_BAG_MENU',
-    ADD_ITEM: 'ADD_ITEM'
+    ADD_ITEM: 'ADD_ITEM',
+    REMOVE_ITEM: 'REMOVE_ITEM',
+    CLEAR_ITEM_FROM_BAG: 'CLEAR_ITEM_FROM_BAG'
 }

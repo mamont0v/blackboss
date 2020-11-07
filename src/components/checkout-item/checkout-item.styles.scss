@@ -1,0 +1,47 @@
+.checkout-list {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin: 20px;
+    border-bottom: 1px solid #ffffff;
+    font-size: 20px;
+
+    .image-box {
+        width: 500px;
+    }
+
+    span {
+        margin-right: 40px;
+    }
+
+    img {
+        width: 40%;
+    }
+
+    .remove-icon {
+        float: right;
+
+        cursor: pointer;
+
+        &:hover {
+            color: red;
+        }
+
+    }
+
+    .quantity {
+        display: flex;
+
+        .arrow {
+            cursor: pointer;
+
+            &:hover {
+                color: red;
+            }
+        }
+
+        .value {
+            margin: 0 10px;
+        }
+    }
+}
