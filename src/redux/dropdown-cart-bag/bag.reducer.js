@@ -28,6 +28,11 @@ const bagMenuReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 bagItems: state.bagItems.filter(bagItem => bagItem.id !== action.payload.id)
             };
+        case BagActionTypes.CLEAR_BAG_AFTER_SIGNOUT:
+            return {
+                ...state,
+                bagItems:[]
+            }
         default:
             return state;
     }

@@ -18,3 +18,8 @@ export const clearItemFromBag = item => ({
     type: BagActionTypes.CLEAR_ITEM_FROM_BAG,
     payload: item
 });
+
+
+export const clearBagAfterSignOut = () => ({
+    type: BagActionTypes.CLEAR_BAG_AFTER_SIGNOUT
+})

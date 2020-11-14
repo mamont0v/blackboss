@@ -1,17 +1,35 @@
-import React from 'react'
-import CollectionsOverview from '../../components/collections-overview/collection-overview.component';
+import React, { useEffect } from 'react'
+import CollectionsOverviewContainer from '../../components/collections-overview/collections-overview.container';
 import { Route } from 'react-router-dom';
-import Collections from '../collections/collections.component';
+import CollectionsContainer from '../collections/collections.container';
+import { connect } from 'react-redux';
 
-const ShopPage = ({ match }) => (
+import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
+
+
+const ShopPage = ({ fetchCollectionsStart, match }) => {
+    useEffect(() => {
+        fetchCollectionsStart()
+    }, [fetchCollectionsStart])
+
+    return (
         <div className='shop-page'>
             <h1>Shop page</h1>
-            <Route exact path={`${match.path}`} component={CollectionsOverview} />
-            
-            <Route path={`${match.path}/:collectionId`} component={Collections} />
+            <Route exact path={`${match.path}`}
+                component={CollectionsOverviewContainer}
+            />
+
+            <Route
+                path={`${match.path}/:collectionId`}
+                component={CollectionsContainer}
+            />
         </div>
     )
- 
+}
+
+const mapDispatchToProps = dispatch => ({
+    fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
+})
 
 
-export default ShopPage
+export default connect(null, mapDispatchToProps)(ShopPage)

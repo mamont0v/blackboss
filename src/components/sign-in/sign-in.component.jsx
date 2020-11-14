@@ -1,87 +1,78 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import { useHistory } from 'react-router-dom';
 import './sign-in.styles.scss';
-import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 import CustomButton from '../custom-button/custom-button.component'
+import { googleSignInStart, emailSignInStart } from '../../redux/user/user.action';
+import { connect } from 'react-redux'
 
-class SignIn extends React.Component {
-    constructor(props) {
-        super(props);
+const SignIn = ({ emailSignInStart, googleSignInStart }) => {
 
-        this.state = {
-            email: '',
-            password: ''
-        }
-    }
-    //Изменение всей формы очистка и превент дефолт
-    handleClick = async event => {
+    const [userCredentials, setCredentials] = useState({
+        email: '',
+        password: ''
+    });
+
+    const {email, password} = userCredentials;
+
+
+    const handleClick = async event => {
         event.preventDefault();
-        const { email, password } = this.state;
-
-        try {
-            await auth.signInWithEmailAndPassword(email, password);
-            this.setState({
-                email: '', password: ''
-            })
-        } catch (error) {
-            console.error(error);
-            return;
-        }
-
+        emailSignInStart(email, password);
     }
 
-    handleName = event => {
-        //чтобы не писать event.target.value и event.target.name
+
+    const handleName = async event => {
         const { value, name } = event.target;
-        //[name] будет сам выбираться если name='password' будет passsword если email то так же мыло.
 
-        this.setState({ [name]: value })
+       setCredentials({...userCredentials, [name]: value })
     }
 
 
 
+    return (
+        <div className='sign-in'>
+            <h2>У меня уже есть аккаунт</h2>
+            <span>Войдите с помощью вашей почты и пароля</span>
 
-    render() {
-        return (
-            <div className='sign-in'>
-                <h2>У меня уже есть аккаунт</h2>
-                <span>Войдите с помощью вашей почты и пароля</span>
+            <form onSubmit={handleClick}>
+                <input
+                    name='email'
+                    value={email}
+                    onChange={handleName}
+                    required
 
-                <form>
-                    <input
-                        name='email'
-                        value={this.state.email}
-                        onChange={this.handleName}
-                        required
+                />
+                <label>E-mail</label>
+                <input
+                    name='password'
+                    type='password'
+                    value={password}
+                    onChange={handleName}
+                    required
+                />
+                <label>Пароль</label>
+                <div className='buttons-sign'>
+                    <CustomButton type='submit'>
+                        Войти
+                        </CustomButton>
+                    <CustomButton
+                        type='button'
+                        onClick={googleSignInStart}
+                        isGoogleSignIn>
+                        Google
+                         </CustomButton>
+                </div>
+            </form>
 
-                    />
-                    <label>E-mail</label>
-                    <input
-                        name='password'
-                        type='password'
-                        value={this.state.password}
-                        onChange={this.handleName}
-                        required
-                    />
-                    <label>Пароль</label>
-                    <div className='buttons-sign'>
-                        <CustomButton
-                            type='submit'
-                        >
-                            Войти
-                    </CustomButton>
-                        <CustomButton
-                            onClick={signInWithGoogle}
-                            isGoogleSignIn
-                        >
-                            Войти через Google
-                    </CustomButton>
-                    </div>
-                </form>
-
-            </div>
-        )
-    }
+        </div>
+    )
 }
 
-export default SignIn;
+
+const mapDispatchToProps = dispatch => ({
+    googleSignInStart: () => dispatch(googleSignInStart()),
+    emailSignInStart: (email, password) => dispatch(emailSignInStart({ email, password }))
+
+})
+
+export default connect(null, mapDispatchToProps)(SignIn);

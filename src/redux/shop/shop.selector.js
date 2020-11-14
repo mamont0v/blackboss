@@ -52,14 +52,24 @@ export const selectCollection = collectionUrlParam => createSelector(
     //чтобы работало то нужно так оторбразить при карте
     // collections => collections.find(collection => collection.id === COLLECTION_ID_MAP[collectionUrlParam])
 
-    collections => collections[collectionUrlParam]
-    ) //data normalazation - is you store list of element as OBJECT instead of ARRAYS!!!
-    // и это быстрей чем через find выше выполнять поиск нужного элемента в store 
+    collections => collections ? collections[collectionUrlParam] : null) //data normalazation - is you store list of element as OBJECT instead of ARRAYS!!!
+// и это быстрей чем через find выше выполнять поиск нужного элемента в store 
 
 
 //после того как мы сделали из array в object у нас в colection-overview не получается выполнить .map. Для этого нужно нам конвертировать  наш объект в array
 
 export const selectCollectionForPreview = createSelector(
     [selectShopItems],
-    collections => Object.keys(collections).map(key=>collections[key])
+    collections => collections ? Object.keys(collections).map(key => collections[key]) : []
+)
+
+
+export const selectCollectionFetching = createSelector(
+    [selectShop],
+    shop => shop.isFetching
+)
+
+export const selectIsCollectionLoaded = createSelector(
+    [selectShop],
+    shop => !!shop.collections
 )
