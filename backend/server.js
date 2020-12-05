@@ -39,6 +39,7 @@ const PORT = process.env.PORT || 5000
 
 const app = express();
 
+// const port = process.env.PORT || 5000;
 
 // app.use(helmet());
 
@@ -111,7 +112,7 @@ app.listen(PORT, error => {
 
 //For development mode
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, "client/build")));
+  app.use(express.static(path.join(__dirname, "/client/build")));
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html")); //or path.join
@@ -142,7 +143,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // const app = express();
 
-const port = process.env.PORT || 5000;
+
 
 
 
