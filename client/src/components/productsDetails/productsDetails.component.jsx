@@ -29,16 +29,17 @@ const ProductDetails = ({ match, item }) => {
     return (
         <>
             <h2>
-                <Link to='/products'>Назад</Link>
+            {/* <Link to='/products'>Назад</Link> */}
+                <Link to='/'>Назад</Link>
             </h2>
             <div>
                 <div>
+                    <img src = {`/images/${product.image}`} alt="not found"/>
                     <p>{product.name}</p>
                     <br />
                     <p>{product.description}</p>
                 </div>
                 {/* <CustomButton onClick = {()=> addItem(item) } inverted></CustomButton> */}
-
             </div>
         </>
     )

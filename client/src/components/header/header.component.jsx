@@ -1,48 +1,92 @@
 import React from 'react';
 import './header.styles.scss';
 
-import { ReactComponent as Logo } from '../../../src/assets/iconfinderstoreshopsaleshop4177575-115976_115939.svg';
-import { Link } from 'react-router-dom';
+// import { ReactComponent as Logo } from '../../../src/assets/iconfinderstoreshopsaleshop4177575-115976_115939.svg';
+
+// import { Link } from 'react-router-dom';
 
 
-import ShopingBag from '../shoping-cart/shoping.component';
-import DropDownMenu from '../dropdown-menu/dropdown-menu.component';
+// import ShopingBag from '../shoping-cart/shoping.component';
+// import DropDownMenu from '../dropdown-menu/dropdown-menu.component';
 
-import {createStructuredSelector} from 'reselect'
 
+import { createStructuredSelector } from 'reselect'
 import { connect } from 'react-redux';
-import { selectBagHidden } from '../../redux/dropdown-cart-bag/bag.selector';
-import {signOutStart } from '../../redux/user/user.action';
+// import { selectBagHidden } from '../../redux/dropdown-cart-bag/bag.selector';
+import { signOutStart } from '../../redux/user/user.action';
 import { selectCurrentUser } from '../../redux/user/user.selector';
+import { HeaderContainer, LogoContainer, WrapIconHeader, OptionLink, NavigationContainer, WrapHeaderMobile, LogoLink, IconHeaderItem, GeneralContainer, IconHeaderItemMenu } from './header.styles';
+import { selectNavHidden } from '../../redux/navbar/nav.selector'
 
+// import ShopingList from '../shoping-list/shoping-list.component'
 
+import { Whatsapp } from '@styled-icons/boxicons-logos/Whatsapp';
+// import {List} from '@styled-icons/bootstrap/List';
 
-const Header = ({ currentUser, hidden,signOutStart }) => {
+import HamburgerMenu from '../hamburger-menu/hamburger-menu.component';
+
+// currentUser, hidden, signOutStart, 
+const Header = ({ isHidden }) => {
     return (
-        <div className='header'>
-
-            <Link to="/">
-                <Logo className='logo' />
-            </Link>
-            {/* <div className='logo' style={{
+        <HeaderContainer>
+            <GeneralContainer>
+                <WrapHeaderMobile>
+                    <NavigationContainer>
+                        <LogoContainer>
+                            <LogoLink to='/'>BLACKBOSS</LogoLink>
+                        </LogoContainer>
+                        {/* <div className='logo' style={{
                     backgroundImage: `url()`
                 }} /> */}
-            <div className='options'>
-                <Link className='option' to="/products">
-                    {'магазин'.toUpperCase()}
-                </Link>
-                <Link className='option' to="/help">
-                    {'помощь'.toUpperCase()}
-                </Link>
-                {
-                    currentUser ?
-                        <div className='option' onClick={signOutStart}>ВЫЙТИ</div>
-                        :
-                        <Link className='option' to='/sign-up'>ВОЙТИ</Link>
-                }
-                <ShopingBag />
-            </div> { hidden ? null : <DropDownMenu />}
-        </div>
+
+                        <WrapIconHeader>
+                            <IconHeaderItem>
+                                <OptionLink to="/products">
+                                    {'магазин'.toUpperCase()}
+                                </OptionLink>
+                            </IconHeaderItem>
+                            <IconHeaderItem>
+                                <OptionLink to="/help">
+                                    {'помощь'.toUpperCase()}
+                                </OptionLink>
+                            </IconHeaderItem>
+                            <IconHeaderItem>
+                                <OptionLink to="/blog">
+                                    {'блог'.toUpperCase()}
+                                </OptionLink>
+                            </IconHeaderItem>
+                            <IconHeaderItem>
+                                <OptionLink to="/blog">
+                                    {'отзывы'.toUpperCase()}
+                                </OptionLink>
+                            </IconHeaderItem>
+                            <IconHeaderItem>
+                                <OptionLink to="/chekout" style={{ color: "black", fontWeight: 1000 }}>
+                                    {' заказать +7-777-77-77'.toUpperCase()} <Whatsapp size="22px" />
+                                </OptionLink>
+
+                            </IconHeaderItem>
+                            {/* {
+                        currentUser ?
+                            <OptionDiv onClick={signOutStart}>ВЫЙТИ</OptionDiv>
+                            :
+                            <OptionDiv to='/sign-up'>ВОЙТИ</OptionDiv>
+                    } */}
+                            {isHidden ? null : <div>КНОПКА</div>}
+                            {/* </div>
+                    {/* <ShopingBag /> */}
+                            <IconHeaderItemMenu>
+                                <HamburgerMenu/>
+                            </IconHeaderItemMenu>
+
+                        </WrapIconHeader>
+                        {/* {hidden ? null : <DropDownMenu />} */}
+                        {/* </div> */}
+                    </NavigationContainer>
+                </WrapHeaderMobile>
+            </GeneralContainer>
+        </HeaderContainer>
+
     )
 }
 
@@ -50,7 +94,8 @@ const Header = ({ currentUser, hidden,signOutStart }) => {
 
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
-    hidden: selectBagHidden
+    // hidden: selectBagHidden, //корзина
+    isHidden: selectNavHidden
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -58,3 +103,4 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
+

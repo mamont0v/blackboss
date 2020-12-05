@@ -7,7 +7,7 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import shopReducer from './shop/shop.reducer';
 import productsReducer from './products/products.reducer';
 import productsDetailsReducer from './products/productsDetails/productsDetails.reducer';
-
+import navigationReducer from './navbar/navbar.reducer'
 
 const rootReducer = combineReducers({
     user: userReducer,
@@ -15,7 +15,8 @@ const rootReducer = combineReducers({
     directory: directoryReducer,
     shop: shopReducer,
     products: productsReducer,
-    productsDetails: productsDetailsReducer
+    productsDetails: productsDetailsReducer,
+    nav: navigationReducer
 });
 
 

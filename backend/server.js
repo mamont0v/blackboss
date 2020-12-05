@@ -22,7 +22,7 @@ import mongoose from 'mongoose';
 import connectionDB from './configdb/db.js';
 import colors from 'colors';
 import productRoutes from './routers/Product.routes.js';
-import {notFound, errorHandler} from './middlewares/errorHandling.js';
+import { notFound, errorHandler } from './middlewares/errorHandling.js';
 
 dotenv.config();
 
@@ -111,8 +111,10 @@ app.listen(PORT, error => {
 
 //For development mode
 if (process.env.NODE_ENV === 'production') {
-  app.get('*', function (req, res) {
-    res.sendFile(path.resolve(__dirname, 'index.html', 'build', 'frontend')); //or path.join
+  app.use(express.static(path.join(__dirname, "client/build")));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html")); //or path.join
   });
 } else {
   app.get('/', (req, res, next) => {

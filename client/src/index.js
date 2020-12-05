@@ -10,16 +10,17 @@ import ApolloProviderComponent from './apollo/ApolloProvider';
 
 
 ReactDOM.render(
-<ApolloProviderComponent>
-  <Provider store={store}>
-    <BrowserRouter>
-      <React.StrictMode>
-        <PersistGate loading={null} persistor={persistor}>
+  <ApolloProviderComponent>
+    <Provider store={store}>
+      <BrowserRouter>
+        <React.StrictMode>
+          <PersistGate loading={null} persistor={persistor}>
             <App />
-        </PersistGate>
-      </React.StrictMode>
-    </BrowserRouter>
-  </Provider>
+          </PersistGate>
+        </React.StrictMode>
+      </BrowserRouter>
+    </Provider>
   </ApolloProviderComponent>,
   document.getElementById('root')
 );
+
