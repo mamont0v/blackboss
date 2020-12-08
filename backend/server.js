@@ -109,6 +109,7 @@ app.listen(PORT, error => {
 //   console.log("Connection with MongoDB was successful");
 // });
 
+const __dirname = path.resolve();
 
 //For development mode
 if (process.env.NODE_ENV === 'production') {
